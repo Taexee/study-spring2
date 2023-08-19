@@ -1,7 +1,8 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
+//import hello.core.discount.FixDiscountPolicy;
+//import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -9,7 +10,14 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+//    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    // 추상과 구체클래슼 모두 의존하고 있다 DIP위반! -> 추상에만 의존하도록 변경
+    // fix에서 rate로 변경하는 순간 OrderServiceImpl 소스코드를 변경해야 하기 때문에 OCP도 위반!
+
+    private DiscountPolicy discountPolicy;
+    // 인터페이스(추상)에만 의존하도록 변경 -> nullpointerException 발생
+    // 구현 객체를 대신 생성하고 주입필요
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
