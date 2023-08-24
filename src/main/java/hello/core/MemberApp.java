@@ -8,8 +8,9 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
     // psvm 단축
     public static void main(String[] args) {
-        
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+//        MemberService memberService = new MemberServiceImpl();
         
         // join 테스트
         // cmd+option+v
