@@ -2,9 +2,10 @@ package hello.core.singleton;
 
 import hello.core.AppConfig;
 import hello.core.member.MemberService;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class SingletonTest {
 
@@ -23,9 +24,23 @@ public class SingletonTest {
         // 총 4개의 객체가 생성된다. MemberServiceImpl, MemoryMemberRepository 두개씩
 
         // memberService1 != memberService2
-        Assertions.assertThat(memberService1).isNotSameAs(memberService2);
+        assertThat(memberService1).isNotSameAs(memberService2);
 
         // 순수한 DI 컨테이너 AppConfig는 요청할 때마다 객체를 생성, 메모리 낭비 심함
         // 해결 방안! 객체를 한 개만 생성하고 공유하도록 설계 = 싱글톤 패턴
+    }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonServiceTest() {
+//        new SingletonService(); new 생성자 사용 불가능
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        // 참조값이 같은 것을 확인 = 같은 객체 반환 확인
+        System.out.println("singletonService1 = " + singletonService1);
+        System.out.println("singletonService2 = " + singletonService2);
+
+        assertThat(singletonService1).isSameAs(singletonService2);
     }
 }
