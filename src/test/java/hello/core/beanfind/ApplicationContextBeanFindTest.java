@@ -50,6 +50,7 @@ class ApplicationContextBeanFindTest {
         // xxxx라는 빈을 등록한 적이 없기 때문에 예외 발생
         assertThrows(NoSuchBeanDefinitionException.class, () -> ac.getBean("xxxx", MemberService.class));
         // ac.getBean을 실행할 때 예외가 발생하면 성공
+
     }
 
 }
