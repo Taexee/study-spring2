@@ -32,16 +32,19 @@ public class AppConfig {
     // 역할에 따른 구현을 잘보이게 리팩토링
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
@@ -53,4 +56,17 @@ public class AppConfig {
     // 역활과 구현 클래스를 빠르게 파악 가능
 
     // @Bean 스프링컨테이너에 등록이 됨
+
+
+    // @Bean memberService 호출 -> new MemoryMemberRepository() 호출
+    // @Bean orderService 호출 -> new MemoryMemberRepository() 호출
+    // @Bean MemberRepository 호출 -> new MemoryMemberRepository() 호출
+    // new MemoryMemberRepository 세번 호출됨 싱글톤 깨지는것 아님? -> 스프일 컨테이너가 해결 싱글톤 보장해줌
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // call AppConfig.memberRepository
+    // 3번 호출 실제론 한번만 호출됨
+
 }
