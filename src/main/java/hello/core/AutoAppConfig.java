@@ -6,6 +6,9 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(
+//        basePackages = "hello.core", // 탐색 시작 위치 지정 가능
+//        basePackageClasses = AutoAppConfig.class, // 지정한 클래스의 패키지를 탐색 위치로 지정 hello.core 패키지부터 탐색
+        // 미지정시 @ComponentScan을 붙인 클래스의 패키지를 탐색 위치로 지정
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
 )
 // ComponentScan -> @Component 애노테이션이 붙은 클래스를 찾아서 알아서 스프링 빈으로 등록해줌
