@@ -20,3 +20,5 @@ public class AutoAppConfig {
 // AppConfig에서 @Bean 으로 직접 설정정보 작성, 의존관계 명시
 // @ComponentScan을 사용하게 되면 설정 정보가 없기때문에 의존관계 주입도 클래스 안에서 해결 @Autowired 이용
 
+// 컴포넌트 스캔의 기본 대상
+// @Component, @Controller, @Service, @Repository, @Configuration
