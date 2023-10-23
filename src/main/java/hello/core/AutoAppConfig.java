@@ -18,10 +18,10 @@ import org.springframework.context.annotation.FilterType;
 // 예제코드 유지. AppConfig, TestConfig 등 제외하기 위해 Configuration클래스 excludeFilters 사용해 제외
 public class AutoAppConfig {
     // 수동으로 빈 등록, 자동으로 빈 등록 충돌 테스트
-    @Bean(name = "memoryMemberRepository")
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+//    @Bean(name = "memoryMemberRepository")
+//    public MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
     // 스프링 : 수동 등록 빈이 우선권 -> 수동 빈이 자동 빈을 오버라이딩 해버림, 버그 발생 가능
     // 스프링 부트 : 에러 발생, spring.main.allow-bean-definition-overriding=false 를 기본값으로 설정되어 있음
     //
