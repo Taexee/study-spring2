@@ -18,7 +18,7 @@ public class BeanLifeCYcleTest {
 
     @Configuration
     static class LifeCycleConfig {
-        @Bean(initMethod = "init", destroyMethod = "close")
+        @Bean
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient(); // url 없음 connect null 나옴
             networkClient.setUrl("http://hello-spring.dev"); // 객체를 생성하고 url을 넣어줬음
